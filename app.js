@@ -31,4 +31,28 @@ function executeSlideShow() {
   console.log("executeSlideshow");
 }
 
-setInterval(executeSlideShow, 2000);
+let autoPlayerInterval = setInterval(executeSlideShow, 3000);
+
+const pauseButton = document.querySelector("#btn-pause");
+const playButton = document.querySelector("#btn-play");
+const aplayButton = document.querySelector("#btn-aplay");
+
+pauseButton.addEventListener("click", () => {
+  clearInterval(autoPlayerInterval);
+  autoPlayerInterval = undefined;
+  pauseButton.setAttribute("disabled", "true");
+  aplayButton.removeAttribute("disabled");
+});
+
+playButton.addEventListener("click", () => {
+  executeSlideShow();
+});
+
+aplayButton.addEventListener("click", () => {
+  if (autoPlayerInterval) return;
+  aplayButton.setAttribute("disabled", "true");
+  pauseButton.removeAttribute("disabled");
+
+  executeSlideShow();
+  autoPlayerInterval = setInterval(executeSlideShow, 2000);
+});

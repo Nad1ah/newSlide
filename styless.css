@@ -71,3 +71,9 @@ img {
     background-color: #ffffff;
   }
 }
+
+.buttons {
+  background-color: cadetblue;
+  text-decoration: none;
+  font-style: italic;
+}
